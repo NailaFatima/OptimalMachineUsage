@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<p id="demo"></p>
+	<p id="india"></p>
+	<p id="china"></p>
+	<script type="text/javascript" charset="utf-8" async defer>
+		// var machineCapacity= {large: 10, xlarge:20,twoxl:40,fourxl:80, eightxl:160, tenxl: 320};
+		var machineCapacity_vals= [10, 20, 40, 80, 160, 320];
+		var machineCapacity_keys= ["large", "xlarge", "twoxl", "fourxl", "eightxl", "tenxl"];
+		var RegNY={ large:120, xlarge:230,twoxl:450,fourxl:774,eightxl:1400,tenxl:2820};
+		var RegID={ large:140, twoxl:413,fourxl:890,eightxl:1300,tenxl:2970};
+		var RegCN={ large:110, xlarge:200,fourxl:670,eightxl:1180};
+		var result_aloc_ID=[];
+		var cost_val_ID = 0;
+		var result_aloc_CN=[];
+		var cost_val_CN = 0;
+		var result_aloc_ny=[];
+		var cost_val_ny = 0;
+		var cost_val_ID = 0;
+		var cost_val_CD = 0;
+		var unit = prompt("Enter Capacity Units in Multiples of tens...");
+		var hr= prompt("Enter Hours Required....");		
+		
+		const disNy= [0, 0.0416, 0.0625, 0.1937, 0.2708, 0.2656];
+		const disID= [0, 0, 0.26, 0.21, 0.42, 0.33];
+		const disCN= [0, 0.09, 0, 0.24, 0.33, 0];		
+		
+		if (unit%10==0) 
+		{
+			var unit_NY = unit;
+			var unit_ID = unit;
+			var unit_CN = unit;
+
+			// Start of Calculation for NY
+			while(unit_NY>0)
+			{
+				
+				var machineCapacity_vals= [10, 20, 40, 80, 160, 320];
+				var machineCapacity_keys= ["large", "xlarge", "twoxl", "fourxl", "eightxl", "tenxl"];
+				
+				var maxDiscNy=Math.max(...disNy);
+				var index= disNy.indexOf(maxDiscNy);
+			
+					if(machineCapacity_vals[index]<= unit_NY)
+						{
+						var ans = Math.floor(unit_NY/machineCapacity_vals[index]);
+          				var unit_NY = unit_NY-machineCapacity_vals[index]*ans;
+          				//document.getElementById("demo").innerHTML = result_aloc.push(ans);
+          				result_aloc_ny.push(machineCapacity_keys[index] + ":" + ans);
+          				cost_key_ny = machineCapacity_keys[index];
+          				cost_val_ny = cost_val_ny + RegNY[cost_key_ny] * ans;
+          				disNy.splice(index);
+          				machineCapacity_vals.splice(index);
+          				machineCapacity_keys.splice(index);
+          			   }
+          			else
+          			   {
+          			   		disNy.splice(index);
+          			   		machineCapacity_vals.splice(index);
+          			   		machineCapacity_keys.splice(index);
+          			   }
+          	}
+          	document.getElementById("demo").innerHTML = "For NY Region: " + result_aloc_ny + " ...With Cost $" + cost_val_ny + " For " + hr + " Hours.";
+          	// End of calculation for NY
+
+			// Start of calculation for IN
+			while(unit_ID>0)
+			{
+				var machineCapacity_vals= [10, 20, 40, 80, 160, 320];
+				var machineCapacity_keys= ["large", "xlarge", "twoxl", "fourxl", "eightxl", "tenxl"];
+				var maxDiscID=Math.max(...disID);
+				var index= disID.indexOf(maxDiscID);
+
+				if(machineCapacity_vals[index]<= unit_ID)
+				{
+					var ans = Math.floor(unit_ID/machineCapacity_vals[index]);
+					var unit_ID = unit_ID - machineCapacity_vals[index]*ans;
+          			//document.getElementById("demo").innerHTML = result_aloc.push(ans);
+          			result_aloc_ID.push(machineCapacity_keys[index] + ":" + ans);
+          			cost_key_ID = machineCapacity_keys[index];
+          			cost_val_ID = cost_val_ID + RegID[cost_key_ID] * ans;
+          			disID.splice(index);
+          			machineCapacity_vals.splice(index);
+          			machineCapacity_keys.splice(index);
+          		}
+          		else
+          		{
+          			disID.splice(index);
+          			machineCapacity_vals.splice(index);
+          			machineCapacity_keys.splice(index);
+          		}
+          	}
+          	document.getElementById("india").innerHTML =  "For India Region: " + result_aloc_ID + " ...With Cost $" + cost_val_ID + " For " + hr + " Hours.";
+          	// End of calculation for ID
+
+			// Start of calculation for CN
+			while(unit_CN>0)
+			{
+				var machineCapacity_vals= [10, 20, 40, 80, 160, 320];
+				var machineCapacity_keys= ["large", "xlarge", "twoxl", "fourxl", "eightxl", "tenxl"];
+					
+				var maxDiscCN=Math.max(...disCN);
+				var index= disCN.indexOf(maxDiscCN);
+			
+				if(machineCapacity_vals[index]<= unit_CN)
+				{
+					var ans = Math.floor(unit_CN/machineCapacity_vals[index]);
+          			var unit_CN = unit_CN - machineCapacity_vals[index]*ans;
+          			//document.getElementById("demo").innerHTML = result_aloc.push(ans);
+          			result_aloc_CN.push(machineCapacity_keys[index] + ":" + ans);
+          			cost_key_CN = machineCapacity_keys[index];
+          			cost_val_CN = cost_val_CN + RegCN[cost_key_CN] * ans;
+          			disCN.splice(index);
+          			machineCapacity_vals.splice(index);
+          			machineCapacity_keys.splice(index);
+          		}
+          		else
+          		{
+          			disCN.splice(index);
+          			machineCapacity_vals.splice(index);
+          			machineCapacity_keys.splice(index);
+          		}
+          	}
+          	document.getElementById("china").innerHTML =  "For CN Region: " + result_aloc_CN + " ...With Cost $" + cost_val_CN + " For " + hr + " Hours.";
+			// End of calculation for CN
+		}
+		 else
+		{
+			alert("Capacity Should be in Multiples of tens..");
+			// return;
+		}
+		
+	</script>
+</body>
+</html>
