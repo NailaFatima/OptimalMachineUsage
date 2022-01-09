@@ -66,7 +66,7 @@
           			   		machineCapacity_keys.splice(index);
           			   }
           	}
-          	document.getElementById("demo").innerHTML = "For NY Region: " + result_aloc_ny + " ...With Cost $" + cost_val_ny + " For " + hr + " Hours.";
+          	document.getElementById("demo").innerHTML = "For NY Region: " + result_aloc_ny * hr+ " ...With Cost $" + cost_val_ny + " For " + hr + " Hours.";
           	// End of calculation for NY
 
 			// Start of calculation for IN
@@ -96,7 +96,7 @@
           			machineCapacity_keys.splice(index);
           		}
           	}
-          	document.getElementById("india").innerHTML =  "For India Region: " + result_aloc_ID + " ...With Cost $" + cost_val_ID + " For " + hr + " Hours.";
+          	document.getElementById("india").innerHTML =  "For India Region: " + result_aloc_ID*hr + " ...With Cost $" + cost_val_ID + " For " + hr + " Hours.";
           	// End of calculation for ID
 
 			// Start of calculation for CN
@@ -127,7 +127,7 @@
           			machineCapacity_keys.splice(index);
           		}
           	}
-          	document.getElementById("china").innerHTML =  "For CN Region: " + result_aloc_CN + " ...With Cost $" + cost_val_CN + " For " + hr + " Hours.";
+          	document.getElementById("china").innerHTML =  "For CN Region: " + result_aloc_CN*hr+ " ...With Cost $" + cost_val_CN + " For " + hr + " Hours.";
 			// End of calculation for CN
 		}
 		 else
